@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionsTable extends Migration
+class CreateGradesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,18 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('grades', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
 
             // fields for question
-            $table->string('question');
+            $table->float('grade');
             $table->integer('quiz_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
             // set foreign keys
             $table->foreign('quiz_id')->references('id')->on('quizzes');
+            $table->foreign('user_id')->references('id')->on('users');            
         });
     }
 
@@ -32,6 +34,6 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('questions');
+        Schema::drop('grades');
     }
 }
