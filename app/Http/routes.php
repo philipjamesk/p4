@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/quizzes', 'QuizController@getQuizzes');
+Route::get('/quizzes/{id?}', 'QuizController@getQuizzesId');
+Route::post('/quizzes/{id?}', 'QuizController@postQuizzesResult');
+
+Route::get('/edit/{id?}', 'EditController@getEditQuiz');
+Route::get('/edit/new', 'EditController@getEditNew');
+
+Route::get('/grades', 'GradesController@getGrades');
+
