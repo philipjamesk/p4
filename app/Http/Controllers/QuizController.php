@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Quiz;
+use App\Question;
+use App\Answer;
 
 class QuizController extends Controller
 {
@@ -17,14 +20,23 @@ class QuizController extends Controller
     * Responds to requests to GET /quizzes
     */
     public function getQuizzes() {
-        return view('quiz.list');
+        $quizzes = Quiz::all();
+        return view('quiz.list')->with('quizzes', $quizzes);
     }
 
     /**
     * Responds to requests to GET /quizzes/{id?}
     */
     public function getQuizzesId($id=null) {
-        return view('quiz.take')->with('id', $id);
+        $questions = Question::where('quiz_id', $id)->get();
+        $all_answers = [];
+        foreach ($questions as $question) {
+            $answers = Answer::where('question_id', $question->id)->get();
+            $all_answers[$question->id] = $answers;
+        }
+        return view('quiz.take')->with('id', $id)
+                                ->with('questions', $questions)
+                                ->with('answers', $all_answers);
     }
 
     /**

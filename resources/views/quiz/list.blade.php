@@ -2,7 +2,10 @@
 
 @section('content')
     <h2>List of Quizzes</h2>
-    @for($i=0; $i<10; $i++)
-        <p><a href="/quizzes/{{ $i }}">Quiz {{ $i }}</a></p>
-    @endfor
+    <ul> 
+    @foreach($quizzes as $quiz)
+      <li><a href="/quizzes/{{ $quiz->id }}">{{ $quiz->quiz_name }}</a></li>  
+    @endforeach
+    </ul>
+    
 @stop
