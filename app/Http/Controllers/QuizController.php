@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
+
 use App\Quiz;
 use App\Question;
 use App\Answer;
@@ -42,8 +44,26 @@ class QuizController extends Controller
     /**
     * Responds to requests to POST /quizzes/{id?}
     */
-    public function postQuizzesResult($id=null) {
-        return view('quiz.result')->with('id', $id);
+    public function postQuizzesResult($id=null, Request $request) {
+        $request->all();
+        $number_of_questions = 0;
+        $correct_answers = 0;
+        
+        $request->flash();
+
+        foreach($request['answer'] as $answer){
+            $number_of_questions++;
+            $correct = Answer::find($answer);
+            if ($correct->correct) {
+                $correct_answers++;
+            }
+        }
+
+
+        $score = $correct_answers / $number_of_questions * 100;
+
+        return view('quiz.result')->with('id', $id)
+                                  ->with('score', $score);
     }
 
 }

@@ -9,7 +9,7 @@
             <ul>
                 @foreach($answers[$question->id] as $answer)
                     <label class="radio">
-                        <input type="radio" name="{{ $question->id }}" value="{{ $answer->id }}">
+                        <input type="radio" name="answer[{{ $question->id }}]" value="{{ $answer->id }}">
                         {{ $answer->answer }}
                     </label>
                 @endforeach
