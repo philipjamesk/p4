@@ -15,16 +15,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/test', function () {
-
-    // $answers = \App\Answer::with('question')->get();
-    $quiz = \App\Quiz::find(1);
-    foreach($quiz->question as $question) {
-        dump($question->answer);
-    }
-
-});
-
 Route::get('/quizzes', 'QuizController@getQuizzes');
 Route::get('/quizzes/{id?}', 'QuizController@getQuizzesId');
 Route::post('/quizzes/{id?}', 'QuizController@postQuizzesResult');

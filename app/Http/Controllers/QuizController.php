@@ -30,27 +30,19 @@ class QuizController extends Controller
     * Responds to requests to GET /quizzes/{id?}
     */
     public function getQuizzesId($id=null) {
-        $questions = Question::where('quiz_id', $id)->get();
-        $all_answers = [];
-        foreach ($questions as $question) {
-            $answers = Answer::where('question_id', $question->id)->get();
-            $all_answers[$question->id] = $answers;
-        }
-        return view('quiz.take')->with('id', $id)
-                                ->with('questions', $questions)
-                                ->with('answers', $all_answers);
+        $quiz = Quiz::find($id);
+        return view('quiz.take')->with('quiz', $quiz);
     }
 
     /**
     * Responds to requests to POST /quizzes/{id?}
     */
     public function postQuizzesResult($id=null, Request $request) {
+        
         $request->all();
         $number_of_questions = 0;
         $correct_answers = 0;
         
-        $request->flash();
-
         foreach($request['answer'] as $answer){
             $number_of_questions++;
             $correct = Answer::find($answer);

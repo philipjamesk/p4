@@ -99,14 +99,14 @@ class AnswerTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'answer' => 'False',
-            'correct' => TRUE,
+            'correct' => FALSE,
             'question_id' => '4',
         ]);
         DB::table('answers')->insert([
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'answer' => 'True',
-            'correct' => FALSE,
+            'correct' => TRUE,
             'question_id' => '4',
         ]);
         DB::table('answers')->insert([
@@ -211,14 +211,14 @@ class AnswerTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'answer' => 'False',
-            'correct' => TRUE,
+            'correct' => True,
             'question_id' => '9',
         ]);
         DB::table('answers')->insert([
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'answer' => 'True',
-            'correct' => FALSE,
+            'correct' => False,
             'question_id' => '9',
         ]);
     }
