@@ -14,8 +14,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/quizzes">Take Quiz</a></li>
-        <li><a href="/">View Grades</a></li>
+        @if(Auth::check())
+          <li><a href="/quizzes">Take Quiz</a></li>
+          <li><a href="/">View Grades</a></li>
+          <li><a href="/auth/logout">Logout</a></li>
+        @else
+          <li><a href="/auth/login">Login</a></li>
+        @endif
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container -->

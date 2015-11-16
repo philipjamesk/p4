@@ -32,7 +32,7 @@ class QuizTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'id' => 3,
-            'ready' => False,
+            'ready' => FALSE,
             'quiz_name' => 'Other Quiz',
         ]);
     }

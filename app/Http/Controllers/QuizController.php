@@ -7,6 +7,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 
+use Auth;
+
 use App\Quiz;
 use App\Question;
 use App\Answer;
@@ -16,13 +18,14 @@ class QuizController extends Controller
     
     public function __construct() {
         # Put anything here that should happen before any of the other actions
+
     }
 
     /**
     * Responds to requests to GET /quizzes
     */
     public function getQuizzes() {
-        $quizzes = Quiz::all();
+        $quizzes = Quiz::where('ready', TRUE)->get();
         return view('quiz.list')->with('quizzes', $quizzes);
     }
 

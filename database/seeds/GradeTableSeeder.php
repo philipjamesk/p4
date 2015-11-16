@@ -25,19 +25,5 @@ class GradeTableSeeder extends Seeder
             'quiz_id' => 2,
             'user_id' => 2,
         ]);
-        DB::table('grades')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'grade' => 33.3,
-            'quiz_id' => 1,
-            'user_id' => 3,
-        ]);
-        DB::table('grades')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'grade' => 66.7,
-            'quiz_id' => 3,
-            'user_id' => 3,
-        ]);
     }
 }

@@ -14,25 +14,17 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'name' => 'Philip Kelnhofer',
-            'email' => 'pjkelnhofer@gmail.com',
-            'password' => '123456',
-            'teacher' => TRUE,
-        ]);
-        DB::table('users')->insert([
-            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'name' => 'Jill Harvard',
             'email' => 'jill@harvard.edu',
-            'password' => 'helloworld',
-            'teacher' => FALSE,
+            'password' => bcrypt('helloworld'),
+            'teacher' => TRUE,
         ]);
         DB::table('users')->insert([
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'name' => 'John Harvard',
             'email' => 'john@harvard.edu',
-            'password' => 'helloworld',
+            'password' => bcrypt('helloworld'),
             'teacher' => FALSE,
         ]);
     }
