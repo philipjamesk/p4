@@ -25,7 +25,11 @@ class QuizController extends Controller
     * Responds to requests to GET /quizzes
     */
     public function getQuizzes() {
-        $quizzes = Quiz::where('ready', TRUE)->get();
+        if (Auth::user()->teacher) {
+            return redirect()->action('EditController@getQuizList');
+        } else {
+            $quizzes = Quiz::where('ready', TRUE)->get();
+        }
         return view('quiz.list')->with('quizzes', $quizzes);
     }
 
