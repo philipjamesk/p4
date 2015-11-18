@@ -15,15 +15,21 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/quizzes', 'QuizController@getQuizzes');
-Route::get('/quizzes/{id?}', 'QuizController@getQuizzesId');
-Route::post('/quizzes/{id?}', 'QuizController@postQuizzesResult');
+Route::get('/home', function() {
+    return redirect('/');
+});
+    
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/quizzes', 'QuizController@getQuizzes');
+    Route::get('/quizzes/{id?}', 'QuizController@getQuizzesId');
+    Route::post('/quizzes/{id?}', 'QuizController@postQuizzesResult');
 
-Route::get('/quiz/edit', 'EditController@getQuizList');
-// Route::get('/edit/{id?}', 'EditController@getEditQuiz');
-// Route::get('/edit/new', 'EditController@getEditNew');
+    Route::get('/edit/quizzes', 'EditController@getQuizzes');
+    Route::get('/edit/{id?}', 'EditController@getEditQuiz');
+    Route::get('/edit/new', 'EditController@getEditNew');
 
-Route::get('/grades', 'GradesController@getGrades');
+    Route::get('/grades', 'GradesController@getGrades');
+});
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

@@ -26,7 +26,7 @@ class QuizController extends Controller
     */
     public function getQuizzes() {
         if (Auth::user()->teacher) {
-            return redirect()->action('EditController@getQuizList');
+            return redirect()->action('EditController@getQuizzes');
         } else {
             $quizzes = Quiz::where('ready', TRUE)->get();
         }
