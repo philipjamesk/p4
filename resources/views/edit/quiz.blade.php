@@ -4,11 +4,12 @@
     <h2>Quiz {{ $quiz->id }}</h2>
     <form method="POST" action="/quizzes/{{ $quiz->id }}">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
+        <input type="hidden" value="{{ $quiz->id }}" name="quiz_id">
         @foreach($quiz->question as $question)
             <p>{{ $question->question }}</p>
             <ul>
             @foreach($question->answer as $answer)
-                <p><input type="text" name="{{ $answer->id }}" value="{{ $answer->answer }}"><a href="#{{ $answer->id }}">Delete Answer</a></p>
+                <p><input type="text" name="{{ $answer->id }}" value="{{ $answer->answer }}"><a href="delete/answer/{{ $answer->id }}">Delete Answer</a></p>
             @endforeach
             </ul>
         @endforeach

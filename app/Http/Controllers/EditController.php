@@ -34,8 +34,23 @@ class EditController extends Controller
     * Responds to requests to GET /edit/{id?}
     */
     public function getEditQuiz($id=null) {
-        $quiz = Quiz::find($id);
+        $quiz = Quiz::with('question.answer')->find($id);
         return view('edit.quiz')->with('quiz', $quiz);
     }
 
+
+    /**
+    * Responds to request to GET /edit/delete/answer/{id}
+    */
+    public function getDeleteAnswer($id) {
+        $quiz_id = Answer::find($id)->question->quiz->id;
+/**************************************************************]
+
+KEEP WORKING ON DELETE ANSWER
+
+*/
+        Answer::find($id)->delete();
+        
+        return redirect('/edit/'.$quiz_id);
+    }
 }

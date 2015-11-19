@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/edit/quizzes', 'EditController@getQuizzes');
     Route::get('/edit/{id?}', 'EditController@getEditQuiz');
+    Route::get('/edit/delete/answer/{id?}', 'EditController@getDeleteAnswer');
     Route::get('/edit/new', 'EditController@getEditNew');
 
     Route::get('/grades', 'GradesController@getGrades');
