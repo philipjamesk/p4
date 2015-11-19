@@ -17,6 +17,7 @@ class EditController extends Controller
     
     public function __construct() {
         # Put anything here that should happen before any of the other actions
+
     }
 
     /**
@@ -38,19 +39,47 @@ class EditController extends Controller
         return view('edit.quiz')->with('quiz', $quiz);
     }
 
+    /**
+    * Responds to request to GET /new
+    */
+    public function getEditNew() {
+        return view('edit.new');
+    }
+
+    /**
+    * Responds to request to POST /new
+    */
+    public function postEditNew(Request $request) {
+        $quiz = New Quiz;
+        $quiz->quiz_name = $request->quiz_name;
+        $quiz->save();
+        return redirect('/edit/'.$quiz->id);
+    }
+
+
+    /**
+    * Responds to request to GET /edit/delete/question/{id}
+    */
+    public function getDeleteQuestion($id) {
+        $question = Question::find($id);
+        $quiz_id = $question->quiz->id;
+
+        $answers = $question->answer;
+        foreach ($answers as $answer) {
+            Answer::find($answer->id)->delete();
+        }
+        $question->delete();
+
+        return redirect('/edit/'.$quiz_id);
+    }
 
     /**
     * Responds to request to GET /edit/delete/answer/{id}
     */
     public function getDeleteAnswer($id) {
-        $quiz_id = Answer::find($id)->question->quiz->id;
-/**************************************************************]
-
-KEEP WORKING ON DELETE ANSWER
-
-*/
-        Answer::find($id)->delete();
-        
+        $answer = Answer::find($id);
+        $quiz_id = $answer->question->quiz->id;
+        $answer->delete();
         return redirect('/edit/'.$quiz_id);
     }
 }

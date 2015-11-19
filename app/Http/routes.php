@@ -20,17 +20,26 @@ Route::get('/home', function() {
 });
     
 Route::group(['middleware' => 'auth'], function () {
+   
     Route::get('/quizzes', 'QuizController@getQuizzes');
     Route::get('/quizzes/{id?}', 'QuizController@getQuizzesId');
     Route::post('/quizzes/{id?}', 'QuizController@postQuizzesResult');
 
+    Route::get('/grades', 'GradesController@getGrades');
+
+});
+
+Route::group(['middleware' => 'App\Http\Middleware\TeacherMiddleware'], function () {
+
     Route::get('/edit/quizzes', 'EditController@getQuizzes');
     Route::get('/edit/{id?}', 'EditController@getEditQuiz');
+    Route::get('/edit/delete/question/{id?}', 'EditController@getDeleteQuestion');
     Route::get('/edit/delete/answer/{id?}', 'EditController@getDeleteAnswer');
-    Route::get('/edit/new', 'EditController@getEditNew');
+    Route::get('/new', 'EditController@getEditNew');
+    Route::post('/new', 'EditController@postEditNew');
 
-    Route::get('/grades', 'GradesController@getGrades');
 });
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
