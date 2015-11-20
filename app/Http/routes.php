@@ -35,6 +35,7 @@ Route::group(['middleware' => 'App\Http\Middleware\TeacherMiddleware'], function
     Route::get('/edit/{id?}', 'EditController@getEditQuiz');
     Route::post('/edit/{id?}', 'EditController@postEditQuiz');
     Route::get('/edit/add/question/{quiz_id}', 'EditController@getAddQuestion');
+    Route::get('/edit/add/answer/{question_id}', 'EditController@getAddAnswer');
     Route::get('/edit/delete/question/{id?}', 'EditController@getDeleteQuestion');
     Route::get('/edit/delete/answer/{id?}', 'EditController@getDeleteAnswer');
     Route::get('/new', 'EditController@getEditNew');

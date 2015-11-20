@@ -77,10 +77,10 @@ class EditController extends Controller
     }
 
     /**
-    * Responds to request to GET /edit/delete/question/{id}
+    * Responds to request to GET /edit/delete/question/{question_id}
     */
-    public function getDeleteQuestion($id) {
-        $question = Question::find($id);
+    public function getDeleteQuestion($question_id) {
+        $question = Question::find($question_id);
         $quiz_id = $question->quiz->id;
 
         $answers = $question->answer;
@@ -93,10 +93,10 @@ class EditController extends Controller
     }
 
     /**
-    * Responds to request to GET /edit/delete/answer/{id}
+    * Responds to request to GET /edit/delete/answer/{answer_id}
     */
-    public function getDeleteAnswer($id) {
-        $answer = Answer::find($id);
+    public function getDeleteAnswer($answer_id) {
+        $answer = Answer::find($answer_id);
         $quiz_id = $answer->question->quiz->id;
         $answer->delete();
         return redirect('/edit/'.$quiz_id);

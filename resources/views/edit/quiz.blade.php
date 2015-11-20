@@ -5,12 +5,20 @@
     <form method="POST" action="/edit/{{ $quiz->id }}">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
         @foreach($quiz->question as $question)
-            <p><input type="text" name="{{ $question->id }}" value="{{ $question->question }}"><a href="delete/question/{{ $question->id }}">Delete Question</a></p>
+            <p> 
+                {{ $question->question }} - 
+                <a href="edit/question/{{ $question->id }}">Edit Question</a> - 
+                <a href="delete/question/{{ $question->id }}">Delete Question</a>
+            </p>
             <ul>
             @foreach($question->answer as $answer)
-                <p><input type="text" name="{{ $answer->id }}" value="{{ $answer->answer }}"><a href="delete/answer/{{ $answer->id }}"> Delete Answer</a></p>
+                <p>
+                    {{ $answer->answer }} - 
+                    <a href="edit/answer/{{ $answer->id }}">Edit Answer</a> - 
+                    <a href="delete/answer/{{ $answer->id }}">Delete Answer</a>
+                </p>
             @endforeach
-                <a href="">Add New Answer</a>
+                <a href="/edit/add/answer/{{ $question->id }}">Add New Answer</a>
             </ul>
         @endforeach
         <p><a href="/edit/add/question/{{ $quiz->id }}">Add New Question</a></p>
