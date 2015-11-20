@@ -32,9 +32,17 @@ class EditController extends Controller
     }
 
     /**
-    * Responds to requests to GET /edit/{id?}
+    * Responds to requests to GET /edit/{id}
     */
-    public function getEditQuiz($id=null) {
+    public function getEditQuiz($id) {
+        $quiz = Quiz::with('question.answer')->find($id);
+        return view('edit.quiz')->with('quiz', $quiz);
+    }
+
+    /**
+    * Responds to requests to POST /edit/{id}
+    */
+    public function postEditQuiz($id) {
         $quiz = Quiz::with('question.answer')->find($id);
         return view('edit.quiz')->with('quiz', $quiz);
     }
@@ -56,6 +64,17 @@ class EditController extends Controller
         return redirect('/edit/'.$quiz->id);
     }
 
+    /**
+    * Responds to request to GET /edit/add/question/{quiz_id}
+    */
+    public function getAddQuestion($quiz_id) {
+        $quiz = Quiz::find($quiz_id);
+        $question = New Question;
+        $question->quiz_id = $quiz_id;
+        $question->save();
+
+        return redirect('/edit/'.$quiz_id);
+    }
 
     /**
     * Responds to request to GET /edit/delete/question/{id}

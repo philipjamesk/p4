@@ -8,5 +8,5 @@
       <li><a href="/edit/{{ $quiz->id }}">Edit {{ $quiz->quiz_name }}</a></li>  
     @endforeach
     </ul>
-    <p><a href="/new">Add New Quiz</a></p>
+    <p><a href="/add/question/{{ $quiz->id }}">Add New Quiz</a></p>
 @stop
