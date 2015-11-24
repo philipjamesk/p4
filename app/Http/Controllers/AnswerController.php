@@ -6,81 +6,61 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Auth;
+
+use App\Quiz;
+use App\Question;
+use App\Answer;
+
 class AnswerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function __construct() {
+        # Put anything here that should happen before any of the other actions
+
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    * Responds to request to GET /answer/add/{question_id}
+    */
+    public function getAnswerAdd($question_id) {
+        $question = Quiz::find($question_id);
+        $answer = New Answer;
+        $answer->question_id = $question_id;
+        $answer->save();
+
+        return redirect('/answer/edit/'.$answer->id);
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    * Responds to request to GET /answer/edit/{question_id}
+    */
+    public function getAnswerEdit($answer_id) {
+        $answer = Answer::with('question.quiz')->find($answer_id);
+        return view('edit.answer')->with('answer', $answer);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    * Responds to request to POST /answer/edit/{question_id}
+    */
+    public function postAnswerEdit($answer_id, Request $request) {
+        $answer = Answer::find($answer_id); 
+        $answer->answer = $request->answer;
+        if($request->correct){
+            $answer->correct = TRUE;
+        } else {
+            $answer->correct = FALSE;
+        }
+        $answer->save();
+        return redirect('/edit/'.$answer->question->quiz_id);
     }
-
+ 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    * Responds to request to GET /answer/delete/{question_id}
+    */
+    public function getAnswerDelete($answer_id) {
+        $answer = Answer::find($answer_id);
+        $quiz_id = $answer->question->quiz_id;
+        $answer->delete();
+        return redirect('/edit/'.$quiz_id);
     }
 }

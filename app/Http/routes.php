@@ -31,25 +31,24 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'App\Http\Middleware\TeacherMiddleware'], function () {
 
+    // quiz routes
     Route::get('/edit/quizzes', 'EditController@getQuizzes');
     Route::get('/edit/{id?}', 'EditController@getEditQuiz');
     Route::post('/edit/{id?}', 'EditController@postEditQuiz');
-    Route::get('/edit/add/question/{quiz_id}', 'EditController@getAddQuestion');
-    Route::get('/edit/add/answer/{question_id}', 'EditController@getAddAnswer');
-    Route::get('/edit/delete/question/{id?}', 'EditController@getDeleteQuestion');
-    Route::get('/edit/delete/answer/{id?}', 'EditController@getDeleteAnswer');
     Route::get('/new', 'EditController@getEditNew');
     Route::post('/new', 'EditController@postEditNew');
 
+    // question routes
     Route::get('/question/add/{quiz_id}', 'QuestionController@getQuestionAdd');
     Route::get('/question/edit/{question_id}', 'QuestionController@getQuestionEdit');
     Route::post('/question/edit/{question_id}', 'QuestionController@postQuestionEdit');
     Route::get('/question/delete/{question_id}', 'QuestionController@getQuestionDelete');
 
-//     Route::get('/answer/add/{question_id}', 'AnswerController@getAnswerAdd');
-//     Route::get('/answer/edit/{answer_id}', 'AnswerController@getAnswerEdit');
-//     Route::post('/answer/edit/{answer_id}', 'AnswerController@postAnswerEdit');
-//     Route::get('/answer/delete/{answer_id}', 'AnswerController@getAnswerDelete');
+    // answer routes
+    Route::get('/answer/add/{question_id}', 'AnswerController@getAnswerAdd');
+    Route::get('/answer/edit/{answer_id}', 'AnswerController@getAnswerEdit');
+    Route::post('/answer/edit/{answer_id}', 'AnswerController@postAnswerEdit');
+    Route::get('/answer/delete/{answer_id}', 'AnswerController@getAnswerDelete');
 
 
 });

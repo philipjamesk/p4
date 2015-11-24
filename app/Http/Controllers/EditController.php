@@ -36,7 +36,20 @@ class EditController extends Controller
     */
     public function getEditQuiz($id) {
         $quiz = Quiz::with('question.answer')->find($id);
-        return view('edit.quiz')->with('quiz', $quiz);
+        $answercount = 0;
+
+        foreach($quiz->question->answer as $answer){
+            dump($answer);
+        }
+        if($answercount == 0) {
+            $warning = "This question has no correct answers!";
+        }elseif($answercount > 1) {
+            $warning = "This question has more than one correct answer!";
+        }else{
+            $warning = NULL;
+        }
+        return view('edit.quiz')->with('quiz', $quiz)
+                                ->with('warning', $warning);
     }
 
     /**
@@ -62,15 +75,5 @@ class EditController extends Controller
         $quiz->quiz_name = $request->quiz_name;
         $quiz->save();
         return redirect('/edit/'.$quiz->id);
-    }
-
-    /**
-    * Responds to request to GET /edit/delete/answer/{answer_id}
-    */
-    public function getDeleteAnswer($answer_id) {
-        $answer = Answer::find($answer_id);
-        $quiz_id = $answer->question->quiz->id;
-        $answer->delete();
-        return redirect('/edit/'.$quiz_id);
     }
 }
