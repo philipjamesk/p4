@@ -14,11 +14,6 @@ use App\Answer;
 
 class QuestionController extends Controller
 {
-
-//     Route::get('/question/add/{quiz_id}', 'QuestionController@getQuestionAdd');
-//     Route::get('/question/edit/{question_id}', 'QuestionController@getQuestionEdit');
-//     Route::post('/question/edit/{question_id}', 'QuestionController@postQuestionEdit');
-//     Route::get('/question/delete/{question_id}', 'QuestionController@getQuestionDelete');
     public function __construct() {
         # Put anything here that should happen before any of the other actions
 
@@ -54,16 +49,12 @@ class QuestionController extends Controller
 
         return redirect('/edit/'.$question->quiz_id);
     }
-
-
-
-
  
     /**
     * Responds to request to GET /question/delete/{question_id}
     */
     public function getQuestionDelete($question_id) {
-        $question = Question::find($question_id);
+        $question = Question::with('answer')->find($question_id);
         $quiz_id = $question->quiz->id;
 
         $answers = $question->answer;
