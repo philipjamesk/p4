@@ -1,0 +1,9 @@
+.flash_message {
+    font-weight: 700;
+    color: #fff;
+    background-color: #f11;
+    height: 30px;
+    text-align: center;
+    padding-top: 5px;
+    margin-top: -25px;
+}

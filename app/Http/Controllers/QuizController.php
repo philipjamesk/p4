@@ -37,7 +37,7 @@ class QuizController extends Controller
     * Responds to requests to GET /quizzes/{id?}
     */
     public function getQuizzesId($id=null) {
-        $quiz = Quiz::find($id);
+        $quiz = Quiz::with('question.answer')->find($id);
         return view('quiz.take')->with('quiz', $quiz);
     }
 

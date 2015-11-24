@@ -65,34 +65,6 @@ class EditController extends Controller
     }
 
     /**
-    * Responds to request to GET /edit/add/question/{quiz_id}
-    */
-    public function getAddQuestion($quiz_id) {
-        $quiz = Quiz::find($quiz_id);
-        $question = New Question;
-        $question->quiz_id = $quiz_id;
-        $question->save();
-
-        return redirect('/edit/'.$quiz_id);
-    }
-
-    /**
-    * Responds to request to GET /edit/delete/question/{question_id}
-    */
-    public function getDeleteQuestion($question_id) {
-        $question = Question::find($question_id);
-        $quiz_id = $question->quiz->id;
-
-        $answers = $question->answer;
-        foreach ($answers as $answer) {
-            Answer::find($answer->id)->delete();
-        }
-        $question->delete();
-
-        return redirect('/edit/'.$quiz_id);
-    }
-
-    /**
     * Responds to request to GET /edit/delete/answer/{answer_id}
     */
     public function getDeleteAnswer($answer_id) {

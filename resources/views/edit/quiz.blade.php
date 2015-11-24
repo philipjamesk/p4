@@ -7,21 +7,19 @@
         @foreach($quiz->question as $question)
             <p> 
                 {{ $question->question }} - 
-                <a href="edit/question/{{ $question->id }}">Edit Question</a> - 
-                <a href="delete/question/{{ $question->id }}">Delete Question</a>
+                <a href="/question/edit/{{ $question->id }}">Edit Question</a>
             </p>
             <ul>
             @foreach($question->answer as $answer)
                 <p>
                     {{ $answer->answer }} - 
-                    <a href="edit/answer/{{ $answer->id }}">Edit Answer</a> - 
-                    <a href="delete/answer/{{ $answer->id }}">Delete Answer</a>
+                    <a href="edit/answer/{{ $answer->id }}">Edit Answer</a>
                 </p>
             @endforeach
                 <a href="/edit/add/answer/{{ $question->id }}">Add New Answer</a>
             </ul>
         @endforeach
-        <p><a href="/edit/add/question/{{ $quiz->id }}">Add New Question</a></p>
+        <p><a href="/question/add/{{ $quiz->id }}">Add New Question</a></p>
         <button type="submit" class="btn btn-primary">Save Quiz</button>
     </form>
     <hr>
