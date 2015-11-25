@@ -5,10 +5,10 @@
     <form method="POST" action="/edit/{{ $quiz->id }}">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
         <p class="status">
-        @if($quiz->active)
-            
+        @if($quiz->ready)
+            Quiz is currently active. <a href="/edit/status">Change to inactive</a>
         @else
-
+            Quiz is currently not active. <a href="/edit/status">Change to active</a>
         @endif
         </p>
         @foreach($quiz->question as $question)
