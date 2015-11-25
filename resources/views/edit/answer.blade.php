@@ -11,13 +11,15 @@
                 <ul>
                 @if($answerlist->id == $answer->id)
                     <input type="text" name="answer" id="answer" value="{{ $answerlist->answer }}">
-                    <input type="checkbox" name="correct" id="correct"><label for="correct">Correct</label> 
+                    <input type="checkbox" name="correct" id="correct" {{ $answerlist->correct ? 'checked' : ' ' }}>
+                    <label for="correct">Correct</label> 
                 @else 
                     {{ $answerlist->answer }}
+                    @if($answerlist->correct)
+                     - Correct Answer
+                    @endif
                 @endif
-                @if($answerlist->correct)
-                 - Correct Answer
-                @endif
+
                 </ul>
             </li>
             @endforeach

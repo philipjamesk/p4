@@ -36,20 +36,8 @@ class EditController extends Controller
     */
     public function getEditQuiz($id) {
         $quiz = Quiz::with('question.answer')->find($id);
-        $answercount = 0;
 
-        foreach($quiz->question->answer as $answer){
-            dump($answer);
-        }
-        if($answercount == 0) {
-            $warning = "This question has no correct answers!";
-        }elseif($answercount > 1) {
-            $warning = "This question has more than one correct answer!";
-        }else{
-            $warning = NULL;
-        }
-        return view('edit.quiz')->with('quiz', $quiz)
-                                ->with('warning', $warning);
+        return view('edit.quiz')->with('quiz', $quiz);
     }
 
     /**

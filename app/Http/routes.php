@@ -49,8 +49,7 @@ Route::group(['middleware' => 'App\Http\Middleware\TeacherMiddleware'], function
     Route::get('/answer/edit/{answer_id}', 'AnswerController@getAnswerEdit');
     Route::post('/answer/edit/{answer_id}', 'AnswerController@postAnswerEdit');
     Route::get('/answer/delete/{answer_id}', 'AnswerController@getAnswerDelete');
-
-
+    
 });
 
 

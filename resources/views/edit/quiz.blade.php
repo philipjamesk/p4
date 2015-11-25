@@ -9,8 +9,9 @@
                 {{ $question->question }} - 
                 <a href="/question/edit/{{ $question->id }}">Edit Question</a>
             </p>
+
             @include('includes.warning')
-            <ul>
+
             @foreach($question->answer as $answer)
                 <p>
                     {{ $answer->answer }} 
@@ -21,6 +22,8 @@
                 </p>
             @endforeach
                 <a href="/answer/add/{{ $question->id }}">Add New Answer</a>
+                <br>
+                <br>
             </ul>
         @endforeach
         <p><a href="/question/add/{{ $quiz->id }}">Add New Question</a></p>
