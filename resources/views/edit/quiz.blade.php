@@ -4,6 +4,13 @@
     <h2>{{ $quiz->quiz_name }}</h2>
     <form method="POST" action="/edit/{{ $quiz->id }}">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
+        <p class="status">
+        @if($quiz->active)
+            
+        @else
+
+        @endif
+        </p>
         @foreach($quiz->question as $question)
             <p> 
                 {{ $question->question }} - 
@@ -11,7 +18,7 @@
             </p>
 
             @include('includes.warning')
-
+            <ul>
             @foreach($question->answer as $answer)
                 <p>
                     {{ $answer->answer }} 
