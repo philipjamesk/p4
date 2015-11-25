@@ -44,12 +44,27 @@ class QuizController extends Controller
     /**
     * Responds to requests to POST /quizzes/{id?}
     */
-    public function postQuizzesResult($id=null, Request $request) {
-        
+    public function postQuizzesResult($id, Request $request) {
         $request->all();
+
+        $quiz = Quiz::find($id);
+
+        foreach($quiz->question as $question){
+            $question_id = $question->id;
+            $this->validate(
+                $request,
+                [
+                    'answer.'.$question_id => 'required',
+                ]
+            );
+        }
+
+
         $number_of_questions = 0;
         $correct_answers = 0;
         
+
+
         foreach($request['answer'] as $answer){
             $number_of_questions++;
             $correct = Answer::find($answer);
