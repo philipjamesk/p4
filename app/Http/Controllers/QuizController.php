@@ -12,6 +12,7 @@ use Auth;
 use App\Quiz;
 use App\Question;
 use App\Answer;
+use App\Grade;
 
 class QuizController extends Controller
 {
@@ -72,6 +73,12 @@ class QuizController extends Controller
             }
         }
         $score = $correct_answers / $number_of_questions * 100;
+        // store grade in grades_table
+        $grade = New Grade;
+        $grade->user_id = Auth::user()->id;
+        $grade->quiz_id = $id;
+        $grade->grade = $score;
+        $grade->save();
 
         return view('quiz.result')->with('id', $id)
                                   ->with('score', $score);
