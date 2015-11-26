@@ -2,6 +2,7 @@
 
 @section('content')
     <h2>Quiz {{ $quiz->id }}</h2>
+    @include('includes.errors')
     <form method="POST" action="/quizzes/{{ $quiz->id }}">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
         @foreach($quiz->question as $question)
@@ -9,7 +10,11 @@
             <ul>
             @foreach($question->answer as $answer)
                 <label class="radio">
-                    <input type="radio" name="answer[{{ $question->id }}]" value="{{ $answer->id }}" {{ old('answer.'.$question->id) == $answer->id ? 'checked' : '' }} >
+                    <input type="radio" 
+                           name="answer_for_question[{{ $question->id }}]" 
+                           value="{{ $answer->id }}" 
+                           {{ old('answer_for_question.'.$question->id) == $answer->id ? 'checked' : '' }} 
+                    >
                     {{ $answer->answer }}
                 </label>
             @endforeach
