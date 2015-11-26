@@ -59,11 +59,9 @@ class QuizController extends Controller
             );
         }
 
-
+        // Grades quiz
         $number_of_questions = 0;
         $correct_answers = 0;
-        
-
 
         foreach($request['answer'] as $answer){
             $number_of_questions++;

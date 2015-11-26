@@ -9,7 +9,7 @@
             <ul>
             @foreach($question->answer as $answer)
                 <label class="radio">
-                    <input type="radio" name="answer[{{ $question->id }}]" value="{{ $answer->id }}">
+                    <input type="radio" name="answer[{{ $question->id }}]" value="{{ $answer->id }}" {{ old('answer.'.$question->id) == $answer->id ? 'checked' : '' }} >
                     {{ $answer->answer }}
                 </label>
             @endforeach
