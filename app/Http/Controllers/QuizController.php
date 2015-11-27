@@ -31,13 +31,36 @@ class QuizController extends Controller
         } else {
             $quizzes = Quiz::where('ready', TRUE)->get();
         }
-        return view('quiz.list')->with('quizzes', $quizzes);
+        $grades = Grade::where('user_id', Auth::user()->id)->get();
+
+        $active = array();
+        foreach($quizzes as $quiz){
+            array_push($active, $quiz->id);
+        }
+        $graded = array();
+        foreach($grades as $grade){
+            array_push($graded, $grade->quiz_id);
+        }
+
+        $diff = array_diff($active, $graded);
+
+        dump($diff);
+
+        $quiz_list = new \Illuminate\Database\Eloquent\Collection;
+
+        foreach($diff as $quiz_id) {
+            $quiz_list->add(Quiz::find($quiz_id));
+        }
+
+        return view('quiz.list')->with('quizzes', $quiz_list);
     }
 
     /**
     * Responds to requests to GET /quizzes/{id?}
     */
     public function getQuizzesId($id=null) {
+        $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id);
+        dump($grade);
         $quiz = Quiz::with('question.answer')->find($id);
         return view('quiz.take')->with('quiz', $quiz);
     }

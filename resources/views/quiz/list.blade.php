@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+ 
 @section('content')
     <h2>List of Quizzes</h2>
     

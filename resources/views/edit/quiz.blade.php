@@ -6,9 +6,9 @@
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
         <p class="status">
         @if($quiz->ready)
-            Quiz is currently active. <a href="/edit/status">Change to inactive</a>
+            Quiz is currently active. <a href="/status/{{ $quiz->id }}">Change to inactive</a>
         @else
-            Quiz is currently not active. <a href="/edit/status">Change to active</a>
+            Quiz is currently not active. <a href="/status/{{ $quiz->id }}">Change to active</a>
         @endif
         </p>
         @foreach($quiz->question as $question)

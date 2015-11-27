@@ -64,4 +64,18 @@ class EditController extends Controller
         $quiz->save();
         return redirect('/edit/'.$quiz->id);
     }
+
+    /**
+    * Responds to request to GET /status/{id}
+    */
+    public function getStatus($id) {
+        $quiz = Quiz::find($id);
+        if($quiz->ready){
+            $quiz->ready = FALSE;
+        } else {
+            $quiz->ready = TRUE;
+        }
+        $quiz->save();
+        return redirect('/edit/'.$quiz->id);
+    }
 }
