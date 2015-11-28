@@ -28,42 +28,31 @@ class QuizController extends Controller
     public function getQuizzes() {
         if (Auth::user()->teacher) {
             return redirect()->action('EditController@getQuizzes');
-        } else {
-            $quizzes = Quiz::where('ready', TRUE)->get();
-        }
+        } 
+        
+        // get grades for logged in user and put the quizzes in an array
         $grades = Grade::where('user_id', Auth::user()->id)->get();
-
-        $active = array();
-        foreach($quizzes as $quiz){
-            array_push($active, $quiz->id);
-        }
         $graded = array();
         foreach($grades as $grade){
             array_push($graded, $grade->quiz_id);
         }
 
-        $diff = array_diff($active, $graded);
+        // get ready quizzes that have not been graded
+        $quizzes = Quiz::whereNotIn('id', $graded)->where('ready', TRUE)->get();
 
-        dump($diff);
+        return view('quiz.list')->with('quizzes', $quizzes);
 
-        $quiz_list = new \Illuminate\Database\Eloquent\Collection;
-
-        foreach($diff as $quiz_id) {
-            $quiz_list->add(Quiz::find($quiz_id));
-        }
-
-        return view('quiz.list')->with('quizzes', $quiz_list);
     }
 
     /**
     * Responds to requests to GET /quizzes/{id?}
     */
     public function getQuizzesId($id=null) {
-        $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
-        if(isset($grade)) {
-            \Session::flash('flash_message','Quiz already graded!');
-            return redirect('/quizzes');
-        }
+        // $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
+        // if(isset($grade)) {
+        //     \Session::flash('flash_message','Quiz already graded!');
+        //     return redirect('/quizzes');
+        // }
         $quiz = Quiz::with('question.answer')->find($id);
         return view('quiz.take')->with('quiz', $quiz);
     }
