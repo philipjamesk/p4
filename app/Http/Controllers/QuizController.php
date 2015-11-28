@@ -48,11 +48,11 @@ class QuizController extends Controller
     * Responds to requests to GET /quizzes/{id?}
     */
     public function getQuizzesId($id=null) {
-        // $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
-        // if(isset($grade)) {
-        //     \Session::flash('flash_message','Quiz already graded!');
-        //     return redirect('/quizzes');
-        // }
+        $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
+        if(isset($grade)) {
+            \Session::flash('flash_message','Quiz already graded!');
+            return redirect('/quizzes');
+        }
         $quiz = Quiz::with('question.answer')->find($id);
         return view('quiz.take')->with('quiz', $quiz);
     }
