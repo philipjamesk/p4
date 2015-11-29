@@ -40,6 +40,10 @@ class QuizController extends Controller
         // get ready quizzes that have not been graded
         $quizzes = Quiz::whereNotIn('id', $graded)->where('ready', TRUE)->get();
 
+        // if there are no ungraded quizzes flash message
+        if($quizzes->count() == 0) {
+            \Session::flash('flash_message','You have no ungraded quizzes.');
+        }
         return view('quiz.list')->with('quizzes', $quizzes);
 
     }
