@@ -26,19 +26,16 @@ class QuizController extends Controller
     * Responds to requests to GET /quizzes
     */
     public function getQuizzes() {
+        
         if (Auth::user()->teacher) {
             return redirect()->action('EditController@getQuizzes');
         } 
         
         // get grades for logged in user and put the quizzes in an array
-        $grades = Grade::where('user_id', Auth::user()->id)->get();
-        $graded = array();
-        foreach($grades as $grade){
-            array_push($graded, $grade->quiz_id);
-        }
+        $grades = Grade::where('user_id', Auth::user()->id)->get()->lists('quiz_id');
 
         // get ready quizzes that have not been graded
-        $quizzes = Quiz::whereNotIn('id', $graded)->where('ready', TRUE)->get();
+        $quizzes = Quiz::whereNotIn('id', $grades)->where('ready', TRUE)->get();
 
         // if there are no ungraded quizzes flash message
         if($quizzes->count() == 0) {
