@@ -24,7 +24,12 @@ class GradesController extends Controller
     * Responds to requests to GET /grades
     */
     public function getGrades() {
-        $grades = Grade::with('user', 'quiz')->get();
+        if(Auth::user()->teacher){
+            $grades = Grade::orderBy('user_id', 'desc')->with('user', 'quiz')->get();
+        } else {
+            $grades = Grade::with('user', 'quiz')->where('user_id', Auth::user()->id)->get();
+        }
+
 
         return view('grades.index')->with('grades', $grades);
     }

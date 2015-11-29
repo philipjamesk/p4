@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav navbar-right">
         @if(Auth::check())
           <li><a href="/quizzes">Quizzes</a></li>
-          <li><a href="/">Grades</a></li>
+          <li><a href="/grades">Grades</a></li>
           <li><a href="/auth/logout">Logout</a></li>
         @else
           <li><a href="/auth/register">Register</a></li>
