@@ -16,6 +16,7 @@ When the database is seeded there are four users that are created by default.
 * john@harvard.edu
 * jennifer@havard.edu
 * jamal@harvard.edu
+
 All of them have the same password (helloworld), and the three non-teacher's all a different number of quizzes taken to demonstrate some of the other feature of the site.
 
 
