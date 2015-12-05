@@ -10,7 +10,7 @@
     @endif
     </p>
     @foreach($quiz->question as $question)
-        <p> 
+        <p id="question{{ $question->id }}"> 
             {{ $question->question }} - 
             <a href="/question/edit/{{ $question->id }}">Edit Question</a>
         </p>

@@ -40,7 +40,7 @@ class AnswerController extends Controller
     }
 
     /**
-    * Responds to request to POST /answer/edit/{question_id}
+    * Responds to request to POST /answer/edit/{ansswer_id}
     */
     public function postAnswerEdit($answer_id, Request $request) {
         $this->validate(
@@ -57,7 +57,7 @@ class AnswerController extends Controller
             $answer->correct = FALSE;
         }
         $answer->save();
-        return redirect('/edit/'.$answer->question->quiz_id);
+        return redirect('/edit/'.$answer->question->quiz_id.'#question'.$answer->question->id);
     }
  
     /**

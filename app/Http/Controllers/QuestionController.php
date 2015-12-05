@@ -53,7 +53,7 @@ class QuestionController extends Controller
         $question->question = $request->question;
         $question->save();
 
-        return redirect('/edit/'.$question->quiz_id);
+        return redirect('/edit/'.$question->quiz_id.'#question'.$question_id);
     }
  
     /**
