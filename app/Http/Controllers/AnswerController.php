@@ -43,6 +43,12 @@ class AnswerController extends Controller
     * Responds to request to POST /answer/edit/{question_id}
     */
     public function postAnswerEdit($answer_id, Request $request) {
+        $this->validate(
+            $request,
+            [
+                'answer' => 'required',
+            ]
+        );
         $answer = Answer::find($answer_id); 
         $answer->answer = $request->answer;
         if($request->correct){

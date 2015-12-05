@@ -41,14 +41,6 @@ class EditController extends Controller
     }
 
     /**
-    * Responds to requests to POST /edit/{id}
-    */
-    public function postEditQuiz($id) {
-        $quiz = Quiz::with('question.answer')->find($id);
-        return view('edit.quiz')->with('quiz', $quiz);
-    }
-
-    /**
     * Responds to request to GET /new
     */
     public function getEditNew() {
@@ -59,6 +51,13 @@ class EditController extends Controller
     * Responds to request to POST /new
     */
     public function postEditNew(Request $request) {
+        $this->validate(
+            $request,
+            [
+                'quiz_name' => 'required|min:5',
+            ]
+        );
+
         $quiz = New Quiz;
         $quiz->quiz_name = $request->quiz_name;
         $quiz->save();

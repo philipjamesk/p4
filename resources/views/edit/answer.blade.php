@@ -1,7 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
-    <h2>Test</h2>
+    <h2>{{ $answer->question->quiz->quiz_name }}</h2>
+    @include('includes.errors')
     <form method="POST" action="/answer/edit/{{ $answer->id }}">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
         <p>{{ $answer->question->question }}</p>

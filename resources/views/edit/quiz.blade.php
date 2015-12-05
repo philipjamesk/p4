@@ -2,39 +2,35 @@
 
 @section('content')
     <h2>{{ $quiz->quiz_name }}</h2>
-    <form method="POST" action="/edit/{{ $quiz->id }}">
-        <input type="hidden" value="{{ csrf_token() }}" name="_token">
-        <p class="status">
-        @if($quiz->ready)
-            Quiz is currently active. <a href="/status/{{ $quiz->id }}">Change to inactive</a>
-        @else
-            Quiz is currently not active. <a href="/status/{{ $quiz->id }}">Change to active</a>
-        @endif
+    <p class="status">
+    @if($quiz->ready)
+        Quiz is currently active. <a href="/status/{{ $quiz->id }}">Change to inactive</a>
+    @else
+        Quiz is currently not active. <a href="/status/{{ $quiz->id }}">Change to active</a>
+    @endif
+    </p>
+    @foreach($quiz->question as $question)
+        <p> 
+            {{ $question->question }} - 
+            <a href="/question/edit/{{ $question->id }}">Edit Question</a>
         </p>
-        @foreach($quiz->question as $question)
-            <p> 
-                {{ $question->question }} - 
-                <a href="/question/edit/{{ $question->id }}">Edit Question</a>
-            </p>
 
-            @include('includes.warning')
-            <ul>
-            @foreach($question->answer as $answer)
-                <p>
-                    {{ $answer->answer }} 
-                    @if($answer->correct)
-                     - Correct Answer
-                    @endif
-                     - <a href="/answer/edit/{{ $answer->id }}">Edit Answer</a>
-                </p>
-            @endforeach
-                <a href="/answer/add/{{ $question->id }}">Add New Answer</a>
-                <br>
-                <br>
-            </ul>
+        @include('includes.warning')
+        <ul>
+        @foreach($question->answer as $answer)
+            <p>
+                {{ $answer->answer }} 
+                @if($answer->correct)
+                 - Correct Answer
+                @endif
+                 - <a href="/answer/edit/{{ $answer->id }}">Edit Answer</a>
+            </p>
         @endforeach
-        <p><a href="/question/add/{{ $quiz->id }}">Add New Question</a></p>
-        <button type="submit" class="btn btn-primary">Save Quiz</button>
-    </form>
+            <a href="/answer/add/{{ $question->id }}">Add New Answer</a>
+            <br>
+            <br>
+        </ul>
+    @endforeach
+    <p><a href="/question/add/{{ $quiz->id }}">Add New Question</a></p>
     <hr>
 @stop

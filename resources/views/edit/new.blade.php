@@ -2,6 +2,7 @@
 
 @section('content')
     <h2>Create New Quiz</h2>
+    @include('includes.errors')
     <form method="POST" action="/new">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
         <fieldset>

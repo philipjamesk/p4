@@ -2,6 +2,7 @@
 
 @section('content')
     <h2>{{ $question->quiz->quiz_name }}</h2>
+    @include('includes.errors')
     <form method="POST" action="/question/edit/{{ $question->id }}">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
         <input type="text" value="{{ $question->question }}" name="question" id="question">

@@ -43,6 +43,12 @@ class QuestionController extends Controller
     * Responds to request to POST /question/edit/{question_id}
     */
     public function postQuestionEdit($question_id, Request $request) {
+        $this->validate(
+            $request,
+            [
+                'question' => 'required|min:5',
+            ]
+        );
         $question = Question::find($question_id); 
         $question->question = $request->question;
         $question->save();
