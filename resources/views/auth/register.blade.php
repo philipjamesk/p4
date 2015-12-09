@@ -48,6 +48,7 @@
 
                         </div>
                     </form>
+                    <p>Not registered? <a href="/login">Login Instead</a></p>
                 </div>
             </div>
         </div>

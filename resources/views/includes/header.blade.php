@@ -17,10 +17,10 @@
         @if(Auth::check())
           <li><a href="/quizzes">Quizzes</a></li>
           <li><a href="/grades">Grades</a></li>
-          <li><a href="/auth/logout">Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
         @else
-          <li><a href="/auth/register">Register</a></li>
-          <li><a href="/auth/login">Login</a></li>
+          <li><a href="/register">Register</a></li>
+          <li><a href="/login">Login</a></li>
         @endif
       </ul>
     </div><!-- /.navbar-collapse -->
