@@ -8,7 +8,7 @@
 ...coming soon...
 
 ## Description
-This website is for taking online quizzes. It allows for 
+This website is for taking online quizzes. It allows for users who are teachers to create and edit quizzes while non-teachers can only take quizzes and view their grades.
 
 ## Details for teaching team
 When the database is seeded there are four users that are created by default. 

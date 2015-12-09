@@ -9,6 +9,5 @@
         <p>If you are student or a teacher who is already registered, you can <a href="/login">login here</a>.</p>
         <p>If you have not yet signed up, you can <a href="/register">register here</a> instead.</p>
     @endif
-
 @stop
 

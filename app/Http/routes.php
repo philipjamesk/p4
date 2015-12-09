@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+/* These routes are only for logged in users */
 Route::group(['middleware' => 'auth'], function () {
    
     Route::get('/quizzes', 'QuizController@getQuizzes');
@@ -25,6 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+/*These routes are only for teachers */
 Route::group(['middleware' => 'App\Http\Middleware\TeacherMiddleware'], function () {
 
     // quiz routes
@@ -58,7 +60,3 @@ Route::get('/logout', 'Auth\AuthController@getLogout');
 Route::get('/register', 'Auth\AuthController@getRegister');
 Route::post('/register', 'Auth\AuthController@postRegister');
 
-
-Route::controllers([
-   'password' => 'Auth\PasswordController',
-]);
