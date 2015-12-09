@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/home', function() {
-    return redirect('/');
-});
-    
 Route::group(['middleware' => 'auth'], function () {
    
     Route::get('/quizzes', 'QuizController@getQuizzes');
