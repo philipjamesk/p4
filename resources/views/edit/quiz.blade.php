@@ -9,9 +9,9 @@
         Quiz is currently not active. <a href="/status/{{ $quiz->id }}">Change to active</a>
     @endif
     </p>
-    @foreach($quiz->question as $question)
+    @foreach($quiz->question as $index => $question)
         <p id="question{{ $question->id }}"> 
-            {{ $question->question }} - 
+            {{ $index + 1 }}. {{ $question->question }} - 
             <a href="/question/edit/{{ $question->id }}">Edit Question</a>
         </p>
 
@@ -34,3 +34,5 @@
     <p><a href="/question/add/{{ $quiz->id }}">Add New Question</a></p>
     <hr>
 @stop
+
+

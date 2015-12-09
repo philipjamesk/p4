@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/about', function () {
+    return view('about');
+});
+
 /* These routes are only for logged in users */
 Route::group(['middleware' => 'auth'], function () {
    
