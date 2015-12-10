@@ -29,7 +29,10 @@ class GradesController extends Controller
         } else {
             $grades = Grade::with('user', 'quiz')->where('user_id', Auth::user()->id)->get();
         }
-
+        if($grades->count() == 0) {
+            \Session::flash('flash_message','There are no grades to display.');
+            return redirect('/quizzes');
+        }
 
         return view('grades.index')->with('grades', $grades);
     }
