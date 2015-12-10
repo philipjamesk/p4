@@ -24,11 +24,14 @@ class GradesController extends Controller
     * Responds to requests to GET /grades
     */
     public function getGrades() {
+        
         if(Auth::user()->teacher){
             $grades = Grade::orderBy('user_id', 'desc')->with('user', 'quiz')->get();
         } else {
             $grades = Grade::with('user', 'quiz')->where('user_id', Auth::user()->id)->get();
         }
+        
+        // redirect if no grades are found
         if($grades->count() == 0) {
             \Session::flash('flash_message','There are no grades to display.');
             return redirect('/quizzes');
