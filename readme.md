@@ -4,6 +4,9 @@
 ## Live URL
 <http://p4.philipjames.me>
 
+## Planning Doc
+[Philip Kelnhofer P4 Planning Doc](http://bit.ly/1ORWQcg)
+
 ## Demo Screencast
 ...coming soon...
 
