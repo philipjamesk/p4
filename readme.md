@@ -26,3 +26,4 @@ All of them have the same password (helloworld), and the three non-teacher's all
 ## Outside code
 * Bootstrap: via MaxCDN <https://www.bootstrapcdn.com/>
 * Bootstrap Yeti Template: via Bootswatch <https://www.bootstrapcdn.com/bootswatch/>
+* Bootstrap Sticky Footer CSS: <https://getbootstrap.com/examples/sticky-footer/>
