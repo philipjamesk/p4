@@ -40,7 +40,7 @@ class QuizController extends Controller
         // if there are no ungraded quizzes flash message
         if($quizzes->count() == 0) {
             \Session::flash('flash_message','You have no ungraded quizzes.');
-            return redirect('/grades');
+            return redirect('/');
         }
         return view('quiz.list')->with('quizzes', $quizzes);
 

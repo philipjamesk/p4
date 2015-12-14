@@ -34,7 +34,7 @@ class GradesController extends Controller
         // redirect if no grades are found
         if($grades->count() == 0) {
             \Session::flash('flash_message','There are no grades to display.');
-            return redirect('/quizzes');
+            return redirect('/');
         }
 
         return view('grades.index')->with('grades', $grades);
