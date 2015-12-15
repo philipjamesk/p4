@@ -55,7 +55,7 @@ class QuizController extends Controller
         $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
         if(isset($grade)) {
             \Session::flash('flash_message','Quiz already graded!');
-            return redirect('/quizzes');
+            return redirect('/');
         }
 
         $quiz = Quiz::with('question.answer')->find($id);
@@ -83,16 +83,15 @@ class QuizController extends Controller
         }
 
         // Grades quiz
-        $number_of_questions = 0;
         $correct_answers = 0;
         foreach($request['answer_for_question'] as $answer){
-            $number_of_questions++;
             $correct = Answer::find($answer);
             if ($correct->correct) {
                 $correct_answers++;
             }
         }
-        $score = $correct_answers / $number_of_questions * 100;
+        $score = $correct_answers / $quiz->numberOfQuestions() * 100;
+
         // store grade in grades_table
         $grade = New Grade;
         $grade->user_id = Auth::user()->id;

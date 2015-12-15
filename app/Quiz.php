@@ -15,4 +15,8 @@ class Quiz extends Model
         return $this->hasMany('\App\Grade');
     }
     
+
+    public function numberOfQuestions() {
+        return Question::where('quiz_id', '=', $this->id)->get()->count();
+    }
 }
