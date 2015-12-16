@@ -34,7 +34,8 @@ class Quiz extends Model
         foreach ($questions as $question) {
             $number_of_correct_answers = $question->numberOfCorrectAnswers(); 
             if ($number_of_correct_answers != 1) {
-                $warnings->put($question->id, $number_of_correct_answers);
+                $warning = 'Question has '.$number_of_correct_answers.' correct answers!';
+                $warnings->put($question->id, $warning);
             }
         }
 

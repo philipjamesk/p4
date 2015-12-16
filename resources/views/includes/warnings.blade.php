@@ -1,3 +1,1 @@
-@if(isset($warning))
-    <h3><span class="label label-danger">{{ $warning }}</span></h3>
-@endif
+<h4><span class="label label-warning">{{ $warnings[$question->id] }}</span></h4>

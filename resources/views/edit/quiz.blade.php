@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
     <h2>{{ $quiz->quiz_name }}</h2>
     <p class="status">
     @if($quiz->ready)
@@ -16,6 +15,11 @@
         <p id="question{{ $question->id }}"> 
             {{ $index + 1 }}. {{ $question->question }} - 
             <a href="/question/edit/{{ $question->id }}">Edit Question</a>
+            @if(isset($warnings))
+                @if($warnings->has($question->id))
+                    @include('includes.warnings')
+                @endif
+            @endif
         </p>
         <ul>
         @foreach($question->answer as $answer)
