@@ -77,4 +77,17 @@ class EditController extends Controller
         $quiz->save();
         return redirect('/edit/'.$quiz->id);
     }
+
+    /**
+    * Responds to request to GET /delete/{id}
+    */
+    public function getDelete($id) {
+        $quiz = Quiz::find($id);
+        if($quiz->noGrades()) {
+            return view('edit.delete')->with('quiz', $quiz);
+        } else {
+            \Session::flash('flash_message','Quiz had stored grades. Cannot be delete.');
+            return redirect('/edit/'.$quiz->id);
+        }
+    }
 }

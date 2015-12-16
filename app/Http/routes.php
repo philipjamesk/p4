@@ -39,6 +39,8 @@ Route::group(['middleware' => 'App\Http\Middleware\TeacherMiddleware'], function
     Route::get('/new', 'EditController@getEditNew');
     Route::post('/new', 'EditController@postEditNew');
     Route::get('/status/{id}', 'EditController@getStatus');
+    Route::get('/delete/{id}', 'EditController@getDelete');
+    Route::get('/delete/confirm/{id}', 'EditController@getConfirmDelete');
 
     // question routes
     Route::get('/question/add/{quiz_id}', 'QuestionController@getQuestionAdd');

@@ -15,8 +15,15 @@ class Quiz extends Model
         return $this->hasMany('\App\Grade');
     }
     
-
     public function numberOfQuestions() {
         return Question::where('quiz_id', '=', $this->id)->get()->count();
+    }
+
+    public function noGrades() {
+        if (Grade::where('quiz_id', '=', $this->id)->get()->count() == 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 }
