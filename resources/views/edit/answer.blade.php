@@ -11,7 +11,7 @@
             <li>
                 <ul>
                 @if($answerlist->id == $answer->id)
-                    <input type="text" name="answer" id="answer" value="{{ $answerlist->answer }}">
+                    <input type="text" name="answer" id="answer" size="40" value="{{ $answerlist->answer }}">
                     <input type="checkbox" name="correct" id="correct" {{ $answerlist->correct ? 'checked' : ' ' }}>
                     <label for="correct">Correct</label> 
                 @else 
