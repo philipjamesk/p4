@@ -9,8 +9,11 @@
         <p class="status">Quiz is currently not active.</p> 
         <a href="/status/{{ $quiz->id }}"><button class="btn btn-success">Set to Active</button></a>
         <a href="/delete/{{ $quiz->id }}"><button class="btn btn-danger">Delete Quiz</button></a>
-        <hr>
 
+        @if(isset($warnings))
+            <h3><span class="label label-warning">Quiz cannot be set to active see warnings!</span></h3>
+        @endif
+        <hr>
         @foreach($quiz->question as $index => $question)
             <p id="question{{ $question->id }}"> 
                 {{ $index + 1 }}. {{ $question->question }} - 
