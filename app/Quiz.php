@@ -26,4 +26,18 @@ class Quiz extends Model
             return FALSE;
         }
     }
+
+    public function warnings() {
+        $warnings = new \Illuminate\Database\Eloquent\Collection;
+        $questions = Question::where('quiz_id', '=', $this->id)->get();
+
+        foreach ($questions as $question) {
+            $number_of_correct_answers = $question->numberOfCorrectAnswers(); 
+            if ($number_of_correct_answers != 1) {
+                $warnings->put($question->id, $number_of_correct_answers);
+            }
+        }
+
+        return $warnings;
+    }
 }

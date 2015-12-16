@@ -29,6 +29,4 @@
     </form>
     <a href="/answer/delete/{{ $answer->id }}">Delete Answer</a>
     <hr>    
-
-
 @stop

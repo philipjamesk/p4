@@ -69,10 +69,16 @@ class EditController extends Controller
     */
     public function getStatus($id) {
         $quiz = Quiz::find($id);
-        if($quiz->ready){
+        if($quiz->ready) {
             $quiz->ready = FALSE;
         } else {
-            $quiz->ready = TRUE;
+            $warnings = $quiz->warnings();
+            if($warnings->count() == 0) {
+                $quiz->ready = TRUE;
+            } else {
+                return view('edit.quiz')->with('quiz', $quiz)
+                                          ->with('warnings', $warnings);
+            }
         }
         $quiz->save();
         return redirect('/edit/'.$quiz->id);

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
     <h2>{{ $quiz->quiz_name }}</h2>
     <p class="status">
     @if($quiz->ready)

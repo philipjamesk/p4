@@ -11,7 +11,7 @@
                 </div>
                 <div class="panel-body">
                                  
-                   @include('errors.errors')
+                   @include('includes.errors')
                     <form class="form-horizontal" role="form" method="POST" action="/login">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
