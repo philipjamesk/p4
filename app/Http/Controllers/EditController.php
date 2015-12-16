@@ -92,7 +92,7 @@ class EditController extends Controller
         if($quiz->noGrades()) {
             return view('edit.delete')->with('quiz', $quiz);
         } else {
-            \Session::flash('flash_message','Quiz had stored grades. Cannot be delete.');
+            \Session::flash('flash_message','Quiz had stored grades. Cannot be deleted.');
             return redirect('/edit/'.$quiz->id);
         }
     }
