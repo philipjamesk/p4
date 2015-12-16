@@ -5,7 +5,7 @@
     @include('includes.errors')
     <form method="POST" action="/question/edit/{{ $question->id }}">
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
-        <input type="text" value="{{ $question->question }}" name="question" id="question">
+        <input type="text" value="{{ $question->question }}" size="60" name="question" id="question">
         <ul>
             @foreach($question->answer as $answer)
             <li>{{ $answer->answer }}
