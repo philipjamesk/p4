@@ -60,13 +60,8 @@ class QuestionController extends Controller
     * Responds to request to GET /question/delete/{question_id}
     */
     public function getQuestionDelete($question_id) {
-        $question = Question::with('quiz', 'answer')->find($question_id);
+        $question = Question::with('quiz')->find($question_id);
         $quiz_id = $question->quiz->id;
-
-        // $answers = $question->answer;
-        // foreach ($answers as $answer) {
-        //     Answer::find($answer->id)->delete();
-        // }
         $question->delete();
 
         return redirect('/edit/'.$quiz_id);

@@ -96,6 +96,11 @@ class EditController extends Controller
     */
     public function getConfirmDelete($id) {
         $quiz = Quiz::find($id);
+
+        $quiz->delete();
+
+        \Session::flash('flash_message','Quiz deleted!');
         
+        return redirect('/edit/quizzes');
     }
 }
