@@ -90,4 +90,12 @@ class EditController extends Controller
             return redirect('/edit/'.$quiz->id);
         }
     }
+
+    /**
+    * Responds to request to GET /delete/confirm/{id}
+    */
+    public function getConfirmDelete($id) {
+        $quiz = Quiz::find($id);
+        
+    }
 }

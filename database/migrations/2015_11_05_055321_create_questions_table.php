@@ -21,7 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('quiz_id')->unsigned();
 
             // set foreign keys
-            $table->foreign('quiz_id')->references('id')->on('quizzes');
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
         });
     }
 
