@@ -29,13 +29,3 @@ body {
   padding: 20px;
 }
 
-/* danger button links */
-.btn-danger>a {
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
-}
-.btn-danger>a:hover {
-  text-decoration: none;
-  color: #fff;
-  text-shadow: 1px 1px 1px #000;
-}
