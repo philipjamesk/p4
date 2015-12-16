@@ -9,13 +9,13 @@
         Quiz is currently not active. <a href="/status/{{ $quiz->id }}">Change to active</a>
     @endif
     </p>
+    <a href="/delete/{{ $quiz->id }}"><button class="btn btn-danger">Delete Quiz</button></a>
+    <hr>
     @foreach($quiz->question as $index => $question)
         <p id="question{{ $question->id }}"> 
             {{ $index + 1 }}. {{ $question->question }} - 
             <a href="/question/edit/{{ $question->id }}">Edit Question</a>
         </p>
-
-        @include('includes.warning')
         <ul>
         @foreach($question->answer as $answer)
             <p>
