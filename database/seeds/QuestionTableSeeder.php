@@ -74,5 +74,26 @@ class QuestionTableSeeder extends Seeder
             'question' => 'Dogs are better than cats.',
             'quiz_id' => '3',
         ]);
+        DB::table('questions')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'id' => 10,
+            'question' => 'Question with one correct answer.',
+            'quiz_id' => '4',
+        ]);
+        DB::table('questions')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'id' => 11,
+            'question' => 'Question with no correct answers.',
+            'quiz_id' => '4',
+        ]);
+        DB::table('questions')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'id' => 12,
+            'question' => 'Question with multiple correct answers.',
+            'quiz_id' => '4',
+        ]);
     }
 }

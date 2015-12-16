@@ -211,15 +211,71 @@ class AnswerTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'answer' => 'False',
-            'correct' => True,
+            'correct' => TRUE,
             'question_id' => '9',
         ]);
         DB::table('answers')->insert([
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'answer' => 'True',
-            'correct' => False,
+            'correct' => FALSE,
             'question_id' => '9',
+        ]);
+        DB::table('answers')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'answer' => 'wrong answer',
+            'correct' => FALSE,
+            'question_id' => '10',
+        ]);
+        DB::table('answers')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'answer' => 'correct answer',
+            'correct' => TRUE,
+            'question_id' => '10',
+        ]);
+        DB::table('answers')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'answer' => 'wrong answer',
+            'correct' => FALSE,
+            'question_id' => '10',
+        ]);
+        DB::table('answers')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'answer' => 'wrong answer',
+            'correct' => FALSE,
+            'question_id' => '11',
+        ]);
+        DB::table('answers')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'answer' => 'wrong answer',
+            'correct' => FALSE,
+            'question_id' => '11',
+        ]);
+        DB::table('answers')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'answer' => 'wrong answer',
+            'correct' => FALSE,
+            'question_id' => '12',
+        ]);
+        DB::table('answers')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'answer' => 'correct answer',
+            'correct' => TRUE,
+            'question_id' => '12',
+        ]);
+        DB::table('answers')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'answer' => 'correct answer',
+            'correct' => TRUE,
+            'question_id' => '12',
         ]);
     }
 }

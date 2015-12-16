@@ -35,5 +35,13 @@ class QuizTableSeeder extends Seeder
             'ready' => FALSE,
             'quiz_name' => 'Other Quiz',
         ]);
+
+        DB::table('quizzes')->insert([
+            'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+            'id' => 4,
+            'ready' => FALSE,
+            'quiz_name' => 'Not Ready Quiz',
+        ]);
     }
 }
