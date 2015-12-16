@@ -23,8 +23,9 @@ Route::get('/about', function () {
 Route::group(['middleware' => 'auth'], function () {
    
     Route::get('/quizzes', 'QuizController@getQuizzes');
-    Route::get('/quizzes/{id?}', 'QuizController@getQuizzesId');
-    Route::post('/quizzes/{id?}', 'QuizController@postQuizzesResult');
+    Route::get('/quizzes/{id}', 'QuizController@getQuizzesId');
+    Route::get('/quizzes/confirm/{id}', 'QuizController@getConfirmQuizzesId');
+    Route::post('/quizzes/{id}', 'QuizController@postQuizzesResult');
 
     Route::get('/grades', 'GradesController@getGrades');
 

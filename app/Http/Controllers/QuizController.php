@@ -47,9 +47,17 @@ class QuizController extends Controller
     }
 
     /**
-    * Responds to requests to GET /quizzes/{id?}
+    * Responds to requests to GET /quizzes/confirm/{id?}
     */
-    public function getQuizzesId($id=null) {
+    public function getConfirmQuizzesId($id) {
+        $quiz = Quiz::with('question.answer')->find($id);
+        return view('quiz.confirm')->with('quiz', $quiz);
+    }
+
+    /**
+    * Responds to requests to GET /quizzes/{id}
+    */
+    public function getQuizzesId($id) {
         
         // check that quiz had not already been taken by this user
         $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
@@ -58,12 +66,20 @@ class QuizController extends Controller
             return redirect('/');
         }
 
+        // create new grade for this quiz
+        $grade = New Grade;
+        $grade->user_id = Auth::user()->id;
+        $grade->quiz_id = $id;
+        $grade->grade = 0;
+        $grade->save();
+
+        // send the quiz for the user to take
         $quiz = Quiz::with('question.answer')->find($id);
         return view('quiz.take')->with('quiz', $quiz);
     }
 
     /**
-    * Responds to requests to POST /quizzes/{id?}
+    * Responds to requests to POST /quizzes/{id}
     */
     public function postQuizzesResult($id, Request $request) {
 
@@ -93,9 +109,7 @@ class QuizController extends Controller
         $score = $correct_answers / $quiz->numberOfQuestions() * 100;
 
         // store grade in grades_table
-        $grade = New Grade;
-        $grade->user_id = Auth::user()->id;
-        $grade->quiz_id = $id;
+        $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
         $grade->grade = $score;
         $grade->save();
 

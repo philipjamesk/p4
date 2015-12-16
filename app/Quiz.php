@@ -14,11 +14,21 @@ class Quiz extends Model
     public function grade() {
         return $this->hasMany('\App\Grade');
     }
-    
+
+   /**
+    *
+    * 
+    *
+    */   
     public function numberOfQuestions() {
         return Question::where('quiz_id', '=', $this->id)->get()->count();
     }
 
+   /**
+    *
+    * 
+    *
+    */   
     public function noGrades() {
         if (Grade::where('quiz_id', '=', $this->id)->get()->count() == 0) {
             return TRUE;
@@ -27,6 +37,11 @@ class Quiz extends Model
         }
     }
 
+   /**
+    *
+    * 
+    *
+    */
     public function warnings() {
         $warnings = new \Illuminate\Database\Eloquent\Collection;
         $questions = Question::where('quiz_id', '=', $this->id)->get();

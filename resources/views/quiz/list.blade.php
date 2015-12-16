@@ -6,7 +6,7 @@
     @endif
     <ul> 
     @foreach($quizzes as $quiz)
-      <li><a href="/quizzes/{{ $quiz->id }}">{{ $quiz->quiz_name }}</a></li>  
+      <li><a href="/quizzes/confirm/{{ $quiz->id }}">{{ $quiz->quiz_name }}</a></li>  
     @endforeach
     </ul>
 
