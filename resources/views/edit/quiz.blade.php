@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Edit {{ $quiz->quiz_name }}
+@stop
+
 @section('content')
     <h2>{{ $quiz->quiz_name }}</h2>
     @if($quiz->ready)

@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Edit {{ $question->quiz->quiz_name  }} Question
+@stop
+
 @section('content')
     <h2>{{ $question->quiz->quiz_name }}</h2>
     @include('includes.errors')

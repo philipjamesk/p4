@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Create a New Quiz
+@stop
+
 @section('content')
     <h2>Create New Quiz</h2>
     @include('includes.errors')
