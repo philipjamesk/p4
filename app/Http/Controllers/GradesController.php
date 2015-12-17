@@ -25,6 +25,7 @@ class GradesController extends Controller
     */
     public function getGrades() {
         
+        // show all grades is teacher only user grades if notw
         if(Auth::user()->teacher){
             $grades = Grade::orderBy('user_id', 'desc')->with('user', 'quiz')->get();
         } else {

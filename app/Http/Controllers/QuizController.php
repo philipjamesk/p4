@@ -87,7 +87,11 @@ class QuizController extends Controller
 
         // get quiz for validation 
         $quiz = Quiz::find($id);
+
+        // custom message
         $messages = array('required' => 'You must answer all questions!');
+        
+        // make sure each question that is part of the quiz is in the request
         foreach($quiz->question as $question){
             $this->validate(
                 $request,

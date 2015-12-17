@@ -15,6 +15,11 @@ class Question extends Model
         return $this->belongsTo('\App\Quiz');
     }
     
+    /**
+     * Count the number of correct answers for a question
+     *
+     * @return int
+     */
     public function numberOfCorrectAnswers() {
         return Answer::where('question_id', '=', $this->id)->where('correct', 1)->count();
     }

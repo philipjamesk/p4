@@ -49,6 +49,7 @@ class QuestionController extends Controller
                 'question' => 'required|min:5',
             ]
         );
+        
         $question = Question::find($question_id); 
         $question->question = $request->question;
         $question->save();
@@ -61,6 +62,8 @@ class QuestionController extends Controller
     */
     public function getQuestionDelete($question_id) {
         $question = Question::with('quiz')->find($question_id);
+        
+        // store quiz_id for redirect
         $quiz_id = $question->quiz->id;
         $question->delete();
 

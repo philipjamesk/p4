@@ -72,6 +72,7 @@ class EditController extends Controller
         if($quiz->ready) {
             $quiz->ready = FALSE;
         } else {
+            // check quiz for warnings
             $warnings = $quiz->warnings();
             if($warnings->count() == 0) {
                 $quiz->ready = TRUE;
@@ -89,6 +90,8 @@ class EditController extends Controller
     */
     public function getDelete($id) {
         $quiz = Quiz::find($id);
+
+        // quizzes with saved grades cannot be deleted
         if($quiz->noGrades()) {
             return view('edit.delete')->with('quiz', $quiz);
         } else {
