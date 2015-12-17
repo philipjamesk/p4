@@ -11,6 +11,7 @@ use Auth;
 use App\Quiz;
 use App\Question;
 use App\Answer;
+use App\Grade;
 
 class EditController extends Controller
 {
@@ -70,6 +71,9 @@ class EditController extends Controller
     public function getStatus($id) {
         $quiz = Quiz::find($id);
         if($quiz->ready) {
+            if(Grade::where('quiz_id', '=', $quiz->id)->get()->count() != 0) {
+                    \Session::flash('flash_message','Quiz has stored grades!');
+                }
             $quiz->ready = FALSE;
         } else {
             // check quiz for warnings
@@ -95,7 +99,7 @@ class EditController extends Controller
         if($quiz->noGrades()) {
             return view('edit.delete')->with('quiz', $quiz);
         } else {
-            \Session::flash('flash_message','Quiz had stored grades. Cannot be deleted.');
+            \Session::flash('flash_message','Quiz has stored grades. Cannot be deleted.');
             return redirect('/edit/'.$quiz->id);
         }
     }
