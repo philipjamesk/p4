@@ -58,11 +58,20 @@ class QuizController extends Controller
     * Responds to requests to GET /quizzes/{id}
     */
     public function getQuizzesId($id) {
-        
+
         // check that quiz had not already been taken by this user
         $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
         if(isset($grade)) {
             \Session::flash('flash_message','Quiz already graded!');
+            return redirect('/');
+        }
+
+        // get quiz
+        $quiz = Quiz::with('question.answer')->find($id);
+        
+        // check that quiz is active
+        if(!$quiz->ready) {
+            \Session::flash('flash_message','Quiz does not exist!');
             return redirect('/');
         }
 
@@ -73,8 +82,6 @@ class QuizController extends Controller
         $grade->grade = 0;
         $grade->save();
 
-        // send the quiz for the user to take
-        $quiz = Quiz::with('question.answer')->find($id);
         return view('quiz.take')->with('quiz', $quiz);
     }
 
