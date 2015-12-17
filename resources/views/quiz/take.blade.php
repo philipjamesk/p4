@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    {{ $quiz->quiz_name }} 
+@stop
+
 @section('content')
     <h2>Quiz {{ $quiz->id }}</h2>
     <p>If you close the page without completing you will receive a grade of 0%.</p>

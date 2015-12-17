@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    About QuizMark
+@stop
+
 @section('content')
     <h1>About QuizMark</h1>
     <h3>The Online Quiz Host</h3>

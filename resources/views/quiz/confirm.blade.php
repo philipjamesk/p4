@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('title')
+    Confirm Take {{ $quiz->quiz_name }} 
+@stop
+
 @section('content')
     <h2>Quiz {{ $quiz->quiz_name }}</h2>
     <p>Are you sure you are ready to take the quiz?</p>

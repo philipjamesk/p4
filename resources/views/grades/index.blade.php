@@ -1,5 +1,12 @@
 @extends('layouts.master')
- 
+
+@section('title')
+    @if(!Auth::user()->teacher)
+        {{ Auth::user()->name }} 
+    @endif
+    Grades 
+@stop
+
 @section('content')
     <table style="width:100%">
         <tr>

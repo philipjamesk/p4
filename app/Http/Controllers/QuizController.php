@@ -117,7 +117,7 @@ class QuizController extends Controller
         $grade->grade = $score;
         $grade->save();
 
-        return view('quiz.result')->with('id', $id)
+        return view('quiz.result')->with('quiz', $quiz)
                                   ->with('score', $score);
     }
 

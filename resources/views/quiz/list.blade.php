@@ -1,5 +1,9 @@
 @extends('layouts.master')
- 
+
+@section('title')
+    {{ Auth::user()->name }} Quizzes 
+@stop
+
 @section('content')
     @if($quizzes->count() != 0)
     <h2>List of Quizzes</h2>
