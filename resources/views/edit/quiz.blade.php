@@ -8,11 +8,11 @@
     <h2>{{ $quiz->quiz_name }}</h2>
     @if($quiz->ready)
         <p class="status">Quiz is currently active. You must make it inactive to edit!</p> 
-        <a href="/status/{{ $quiz->id }}"><button class="btn btn-warning">Set to Inactive</button></a>
+        <a href="/status/{{ $quiz->id }}"><div class="btn btn-warning">Set to Inactive</div></a>
     @else
         <p class="status">Quiz is currently not active.</p> 
-        <a href="/status/{{ $quiz->id }}"><button class="btn btn-success">Set to Active</button></a>
-        <a href="/delete/{{ $quiz->id }}"><button class="btn btn-danger">Delete Quiz</button></a>
+        <a href="/status/{{ $quiz->id }}"><div class="btn btn-success">Set to Active</div></a>
+        <a href="/delete/{{ $quiz->id }}"><div class="btn btn-danger">Delete Quiz</div></a>
 
         @if(isset($warnings))
             <h3><span class="label label-warning">Quiz cannot be set to active see warnings!</span></h3>

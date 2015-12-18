@@ -13,7 +13,6 @@
         <ul>
             @foreach($answer->question->answer as $answerlist)
             <li>
-                <ul>
                 @if($answerlist->id == $answer->id)
                     <input type="text" name="answer" id="answer" size="40" value="{{ $answerlist->answer }}">
                     <input type="checkbox" name="correct" id="correct" {{ $answerlist->correct ? 'checked' : ' ' }}>
@@ -24,8 +23,6 @@
                      - Correct Answer
                     @endif
                 @endif
-
-                </ul>
             </li>
             @endforeach
         </ul>

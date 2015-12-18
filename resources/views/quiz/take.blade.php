@@ -14,8 +14,9 @@
         <input type="hidden" value="{{ csrf_token() }}" name="_token">
         @foreach($quiz->question as $index => $question)
             <p>{{ $index + 1 }}. {{ $question->question }}</p>
-            <ul>
+            <ul class="no-bullets">
             @foreach($question->answer as $answer)
+                <li>
                 <label class="radio">
                     <input type="radio" 
                            name="answer_for_question[{{ $question->id }}]" 
@@ -23,6 +24,7 @@
                            {{ old('answer_for_question.'.$question->id) == $answer->id ? 'checked' : '' }} >
                     {{ $answer->answer }}
                 </label>
+                </li>
             @endforeach
             </ul>
         @endforeach
