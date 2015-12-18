@@ -8,7 +8,7 @@
 [Philip Kelnhofer P4 Planning Doc](http://bit.ly/1ORWQcg)
 
 ## Demo Screencast
-...coming soon...
+<https://youtu.be/YVLIqejY0ls>
 
 ## Description
 This website is for taking online quizzes. It allows for users who are teachers to create and edit quizzes while non-teachers can only take quizzes and view their grades.
