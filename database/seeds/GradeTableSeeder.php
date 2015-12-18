@@ -15,6 +15,7 @@ class GradeTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'grade' => 66.7,
+            'taken' => TRUE,
             'quiz_id' => 1,
             'user_id' => 2,
         ]);
@@ -22,6 +23,7 @@ class GradeTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'grade' => 100,
+            'taken' => TRUE,
             'quiz_id' => 2,
             'user_id' => 2,
         ]);
@@ -29,6 +31,7 @@ class GradeTableSeeder extends Seeder
             'created_at' => Carbon\Carbon::now()->toDateTimeString(),
             'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
             'grade' => 50,
+            'taken' => TRUE,
             'quiz_id' => 1,
             'user_id' => 3,
         ]);

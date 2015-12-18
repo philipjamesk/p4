@@ -67,7 +67,7 @@ class QuizController extends Controller
 
         // check that quiz had not already been taken by this user
         $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
-        if(isset($grade)) {
+        if(isset($grade) && $grade->taken) {
             \Session::flash('flash_message','Quiz already graded!');
             return redirect('/');
         }
@@ -81,10 +81,13 @@ class QuizController extends Controller
         }
 
         // create new grade for this quiz set it to zero
-        $grade = New Grade;
+        if(!isset($grade)){
+            $grade = New Grade;
+        }
         $grade->user_id = Auth::user()->id;
         $grade->quiz_id = $id;
         $grade->grade = 0;
+        $grade->taken = TRUE;
         $grade->save();
 
         return view('quiz.take')->with('quiz', $quiz);
@@ -97,8 +100,9 @@ class QuizController extends Controller
 
         // delete zero grade for validation
         $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
-        $grade->delete();
-        
+        $grade->taken = FALSE;
+        $grade->save();
+
         $request->all();
 
         // get quiz for validation 
@@ -129,10 +133,9 @@ class QuizController extends Controller
         $score = $correct_answers / $quiz->numberOfQuestions() * 100;
 
         // store grade in grades_table
-        $grade = New Grade;
-        $grade->user_id = Auth::user()->id;
-        $grade->quiz_id = $id;
+        $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
         $grade->grade = $score;
+        $grade->taken = TRUE;
         $grade->save();
 
         return view('quiz.result')->with('quiz', $quiz)

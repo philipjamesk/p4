@@ -18,6 +18,7 @@ class CreateGradesTable extends Migration
 
             // fields for question
             $table->float('grade');
+            $table->boolean('taken');
             $table->integer('quiz_id')->unsigned();
             $table->integer('user_id')->unsigned();
 

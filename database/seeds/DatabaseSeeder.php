@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(QuizTableSeeder::class);
         $this->call(QuestionTableSeeder::class);
         $this->call(AnswerTableSeeder::class);
-        // $this->call(GradeTableSeeder::class);
+        $this->call(GradeTableSeeder::class);
 
         Model::reguard();
     }
