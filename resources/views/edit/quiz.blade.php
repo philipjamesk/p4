@@ -28,20 +28,18 @@
                     @endif
                 @endif
             </p>
-            <ul>
             @foreach($question->answer as $answer)
-                <p>
+                <ul>
                     {{ $answer->answer }} 
                     @if($answer->correct)
                      - Correct Answer
                     @endif
                      - <a href="/answer/edit/{{ $answer->id }}">Edit Answer</a>
-                </p>
+                </ul>
             @endforeach
                 <a href="/answer/add/{{ $question->id }}">Add New Answer</a>
                 <br>
                 <br>
-            </ul>
         @endforeach
         <p><a href="/question/add/{{ $quiz->id }}">Add New Question</a></p>
         <hr>
