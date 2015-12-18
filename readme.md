@@ -28,6 +28,10 @@ There are four quizzes (with corresponding questions and answers) also built whi
 * Other Quiz - inactive; no grades; ready to set to active
 * Not Ready Quiz - inactive; no grades; not ready to be set to active
 
+I put in checks so that if a non-teacher tries to a not ready quiz by directly entering the address it will return my 404 error page. If they try to view a quiz they have already taken, they are given a flash message and redirected to the home page. If a non-student tries to access any of the "edit" pages they are simply redirected to the home page with no flash message (I figured that I would not want students to even know if they were on the right track with such entries.)
+
+Teachers are simply redirected to the Quiz Listing page if the try to directly enter an invalid quiz, question or answer edit URL with an appropriate flash message.
+
 
 ## Outside code
 * Bootstrap: via MaxCDN <https://www.bootstrapcdn.com/>
