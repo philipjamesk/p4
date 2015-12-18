@@ -29,3 +29,7 @@ body {
   padding: 20px;
 }
 
+/* Remove bullets for ul */
+.no-bullets {
+  list-style-type: none;
+}

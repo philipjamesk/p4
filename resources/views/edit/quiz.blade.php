@@ -28,7 +28,7 @@
                     @endif
                 @endif
             </p>
-            <ul>
+            <ul class="no-bullets">
             @foreach($question->answer as $answer)
                 <li>
                     {{ $answer->answer }} 
