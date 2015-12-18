@@ -80,7 +80,7 @@ class QuizController extends Controller
             return view('errors.404');
         }
 
-        // create new grade for this quiz
+        // create new grade for this quiz set it to zero
         $grade = New Grade;
         $grade->user_id = Auth::user()->id;
         $grade->quiz_id = $id;
@@ -95,6 +95,10 @@ class QuizController extends Controller
     */
     public function postQuizzesResult($id, Request $request) {
 
+        // delete zero grade for validation
+        $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
+        $grade->delete();
+        
         $request->all();
 
         // get quiz for validation 
@@ -102,7 +106,7 @@ class QuizController extends Controller
 
         // custom message
         $messages = array('required' => 'You must answer all questions!');
-        
+
         // make sure each question that is part of the quiz is in the request
         foreach($quiz->question as $question){
             $this->validate(
@@ -125,7 +129,9 @@ class QuizController extends Controller
         $score = $correct_answers / $quiz->numberOfQuestions() * 100;
 
         // store grade in grades_table
-        $grade = Grade::where('quiz_id', $id)->where('user_id', Auth::user()->id)->first();
+        $grade = New Grade;
+        $grade->user_id = Auth::user()->id;
+        $grade->quiz_id = $id;
         $grade->grade = $score;
         $grade->save();
 
