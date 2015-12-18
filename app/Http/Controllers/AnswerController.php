@@ -36,6 +36,12 @@ class AnswerController extends Controller
     */
     public function getAnswerEdit($answer_id) {
         $answer = Answer::with('question.quiz')->find($answer_id);
+
+        if(is_null($answer)) {
+            \Session::flash('flash_message','Answer not found.');
+            return redirect('/edit/quizzes');
+        }
+
         return view('edit.answer')->with('answer', $answer);
     }
 

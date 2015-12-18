@@ -36,6 +36,12 @@ class QuestionController extends Controller
     */
     public function getQuestionEdit($question_id) {
         $question = Question::with('quiz', 'answer')->find($question_id);
+
+        if(is_null($question)) {
+            \Session::flash('flash_message','Question not found.');
+            return redirect('/edit/quizzes');
+        }
+
         return view('edit.question')->with('question', $question);
     }
 
