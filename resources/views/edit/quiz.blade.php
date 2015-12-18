@@ -28,15 +28,17 @@
                     @endif
                 @endif
             </p>
+            <ul>
             @foreach($question->answer as $answer)
-                <ul>
+                <li>
                     {{ $answer->answer }} 
                     @if($answer->correct)
                      - Correct Answer
                     @endif
                      - <a href="/answer/edit/{{ $answer->id }}">Edit Answer</a>
-                </ul>
+                </li>
             @endforeach
+            </ul>
                 <a href="/answer/add/{{ $question->id }}">Add New Answer</a>
                 <br>
                 <br>
