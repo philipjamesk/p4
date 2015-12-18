@@ -38,6 +38,11 @@ class EditController extends Controller
     public function getEditQuiz($id) {
         $quiz = Quiz::with('question.answer')->find($id);
 
+        if(is_null($quiz)) {
+            \Session::flash('flash_message','Quiz not found.');
+            return redirect('/edit/quizzes');
+        }
+
         return view('edit.quiz')->with('quiz', $quiz);
     }
 
