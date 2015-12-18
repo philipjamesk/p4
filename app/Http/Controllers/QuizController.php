@@ -51,6 +51,12 @@ class QuizController extends Controller
     */
     public function getConfirmQuizzesId($id) {
         $quiz = Quiz::with('question.answer')->find($id);
+
+        // check quiz is exists and is active
+        if(is_null($quiz) || !$quiz->ready) {
+            return view('errors.404');
+        }
+        
         return view('quiz.confirm')->with('quiz', $quiz);
     }
 
@@ -69,10 +75,9 @@ class QuizController extends Controller
         // get quiz
         $quiz = Quiz::with('question.answer')->find($id);
         
-        // check that quiz is active
-        if(!$quiz->ready) {
-            \Session::flash('flash_message','Quiz does not exist!');
-            return redirect('/');
+        // check quiz is exists and is active
+        if(is_null($quiz) || !$quiz->ready) {
+            return view('errors.404');
         }
 
         // create new grade for this quiz
